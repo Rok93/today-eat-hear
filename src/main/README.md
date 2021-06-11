@@ -11,8 +11,7 @@
 - [ ] 현재위치로부터 맛집을 조회하는 기능 (정해진 범위안에) 
   
 ## Class Diagram (임시)
-![image](https://user-images.githubusercontent.com/47850258/121689680-e1481180-caff-11eb-9095-c657be25ca74.png)
-
+![image](https://user-images.githubusercontent.com/47850258/121691457-fa51c200-cb01-11eb-8aeb-dbc073e62af6.png)
 
 
 ## 추가 기능  
