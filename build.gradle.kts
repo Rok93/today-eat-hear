@@ -4,6 +4,8 @@ plugins {
     id("org.springframework.boot") version "2.4.6"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     id("org.asciidoctor.convert") version "1.5.8"
+    id("org.jetbrains.kotlin.plugin.noarg") version "1.4.10" // argument 없는 생성자를 자동으로 만들어준다.
+    id("org.jetbrains.kotlin.plugin.allopen") version "1.5.10" // jpa 사용을 위해 OPEN 해준다!
     kotlin("jvm") version "1.4.32"
     kotlin("plugin.spring") version "1.4.32"
     kotlin("plugin.jpa") version "1.4.32"
@@ -24,7 +26,7 @@ val snippetsDir by extra { file("build/generated-snippets") }
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-mustache")
-    implementation("org.springframework.boot:spring-boot-starter-security")
+//    implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
@@ -50,9 +52,15 @@ tasks.withType<Test> {
 
 tasks.test {
     outputs.dir(snippetsDir)
+    useJUnitPlatform()
 }
 
 tasks.asciidoctor {
     inputs.dir(snippetsDir)
     dependsOn(tasks.test)
+}
+
+allOpen {
+    annotation("com.roki.todayeathear.domain.AllOpen")
+    // annotations("com.another.Annotation", "com.third.Annotation")
 }
